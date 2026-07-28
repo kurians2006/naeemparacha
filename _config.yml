@@ -61,6 +61,48 @@ about_content: | # this will include new lines to allow paragraphs
   <a class="resume-download" href="/naeemparacha/files/Muhammad-Naeem-Paracha-Resume.pdf" download="Muhammad-Naeem-Paracha-Resume.pdf">Download Resume</a>
 
 content:
+  - title: Projects
+    layout: list
+    content:
+      - layout: top-middle
+        title: AP News
+        link: apps.apple.com/us/app/ap-news/id364677107
+        link_text: App Store
+        additional_links:
+          - title: App Store
+            icon: fab fa-app-store-ios
+            url: apps.apple.com/us/app/ap-news/id364677107
+        quote: >
+          Breaking World & Local News — The Associated Press · 4.6★ (359K ratings)
+        description: | # this will include new lines to allow paragraphs
+          Free iPhone, iPad and Apple Watch news app featuring personalized topic feeds, customized alerts, curated content hubs, and award-winning photos, videos and articles from the world’s definitive news source. Delivered at **Systems Limited**.
+
+      - layout: top-middle
+        title: UNATION
+        link: apps.apple.com/us/app/unation-find-events-near-you/id953269522
+        link_text: App Store
+        additional_links:
+          - title: App Store
+            icon: fab fa-app-store-ios
+            url: apps.apple.com/us/app/unation-find-events-near-you/id953269522
+        quote: >
+          Find Events Near You · Things to Do in Your City — UNATION, LLC · 3.9★
+        description: | # this will include new lines to allow paragraphs
+          Lifestyle app for discovering local guides, events, experiences and things to do. Includes curated city guides, personalized feeds, ticket purchase, and tools for event creation and promotion. Delivered at **Creative Chaos**.
+
+      - layout: top-middle
+        title: Litterati
+        link: apps.apple.com/us/app/litterati-cleaning-the-earth/id982782776
+        link_text: App Store
+        additional_links:
+          - title: App Store
+            icon: fab fa-app-store-ios
+            url: apps.apple.com/us/app/litterati-cleaning-the-earth/id982782776
+        quote: >
+          Cleaning The Earth — Litterati Inc.
+        description: | # this will include new lines to allow paragraphs
+          Environmental impact app that turns litter into meaningful data through photo capture, location mapping, LitterAI tagging, and coverage maps — powering a global litter database across 185+ countries. Delivered at **Creative Chaos**.
+
   - title: Experience
     layout: list
     content:
@@ -77,6 +119,11 @@ content:
           - Owned App Store releases, CI/CD pipelines and production deployments.
           - Collaborated with Product Managers, QA, UX and Backend teams.
           - Used ChatGPT, GitHub Copilot, Claude, Gemini and Cursor AI to accelerate development, debugging, code reviews, documentation and architecture decisions.
+
+          #### Project: [AP News](https://apps.apple.com/us/app/ap-news/id364677107)
+          **Breaking World & Local News** · The Associated Press · 4.6★ (359K ratings)
+
+          Free iPhone, iPad and Apple Watch app for breaking news, local news and trending world headlines from the world’s definitive news source. Features personalized topic feeds, customized alerts, curated content hubs, and award-winning photos, videos and articles.
 
       - layout: left
         title: Appiskey
@@ -99,6 +146,16 @@ content:
           - Led engineering teams of up to 13 developers.
           - Designed scalable mobile architecture using Swift, MVVM and Clean Architecture.
           - Collaborated with international clients and cross-functional teams.
+
+          #### Project: [UNATION](https://apps.apple.com/us/app/unation-find-events-near-you/id953269522)
+          **Find Events Near You · Things to Do in Your City** · UNATION, LLC · 3.9★
+
+          Lifestyle app for discovering local guides, events, experiences and things to do. Supports curated city guides, personalized feeds, ticket purchase, event creation and promotion for organizers.
+
+          #### Project: [Litterati](https://apps.apple.com/us/app/litterati-cleaning-the-earth/id982782776)
+          **Cleaning The Earth** · Litterati Inc.
+
+          Environmental impact app that turns litter into meaningful data. Users capture litter with location mapping, LitterAI tagging for object/material/brand, coverage maps, and contribute to a global litter database across 185+ countries.
 
       - layout: left
         title: GranPlay

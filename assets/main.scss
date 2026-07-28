@@ -79,3 +79,17 @@
   background: transparent;
   color: #e6e6e6 !important;
 }
+
+.list-container h4 {
+  margin: 1.25rem 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.list-container h4 a {
+  text-decoration: none;
+}
+
+.list-container h4 a:hover {
+  text-decoration: underline;
+}
