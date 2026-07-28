@@ -1,116 +1,177 @@
 # Site
-repository: sproogen/resume-theme
+title: Muhammad Naeem Paracha
+description: Lead iOS Engineer | Mobile Engineering Leader | Swift · SwiftUI · Mobile Architecture
+repository: kurians2006/naeemparacha.github.io
 favicon: images/favicon.ico
+
+# GitHub Pages (project site under kurians2006)
+url: https://kurians2006.github.io
+baseurl: /naeemparacha.github.io
 
 # Content configuration version
 version: 2
 
 # Personal info
-name: Brett Harris
-title: Senior Network System Administrator
-email: brett.h@email.co.uk
-website: www.github.com/sproogen/resume-theme
+name: Muhammad Naeem Paracha
+title: Lead iOS Engineer | Mobile Engineering Leader
+email: naeem.paracha@yahoo.com
+website: kurians2006.github.io/naeemparacha.github.io
 
 # Dark Mode (true/false/never)
 darkmode: false
 
 # Social links
-twitter_username: facespics
-github_username:  sproogen
-# stackoverflow_username: "00000001"
-# dribbble_username: jekyll
-# facebook_username: jekyll
-# flickr_username: jekyll
-instagram_username: jameswgrant
-linkedin_username: jameswgrant
-# xing_username: jekyll
-# pinterest_username: jekyll
-youtube_username: globalmtb
-# googleplus_username: +jekyll
-# orcid_username: 0000-0000-0000-0000
+# twitter_username:
+github_username: kurians2006
+# linkedin_username: # add your LinkedIn username (profile path) if you want the icon
+# stackoverflow_username:
+# dribbble_username:
+# facebook_username:
+# flickr_username:
+# instagram_username:
+# xing_username:
+# pinterest_username:
+# youtube_username:
+# googleplus_username:
+# orcid_username:
 
 # Additional icon links
 additional_links:
-- title: itsgoingto.be
-  icon: fas fa-globe
-  url: https://www.itsgoingto.be
-# - title: another link
-#   icon: font awesome brand icon name (eg. fab fa-twitter) (https://fontawesome.com/icons?d=gallery&m=free)
-#   url: Link url (eg. https://google.com)
-
-# Google Analytics and Tag Manager
-# Using more than one of these may cause issues with reporting
-# gtm: "GTM-0000000"
-# gtag: "UA-00000000-0"
-# google_analytics: "UA-00000000-0"
+- title: Call
+  icon: fas fa-phone
+  url: tel:+923343485250
+- title: Karachi, Pakistan
+  icon: fas fa-map-marker-alt
+  url: https://www.google.com/maps/place/Karachi
+# Replace the url below with your full LinkedIn profile URL
+- title: LinkedIn
+  icon: fab fa-linkedin
+  url: https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME
 
 # About Section
 # about_title: About Me
 about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi, my name's Brett and I'm a senior network system administrator. As well as administrating systems I also have experience making software and web apps. I have worked at a number of companies gaining teamwork and leadership skills.
+  Lead iOS Engineer and Mobile Engineering Leader with **16+ years** of experience architecting, developing and delivering enterprise-grade native iOS applications across Banking, Government, Media and Enterprise domains.
 
-  I am most skilled in: <mark>AWS</mark> and <mark>Eating Pizza</mark>
+  Expert in <mark>Swift</mark>, <mark>SwiftUI</mark>, <mark>UIKit</mark>, <mark>Objective-C</mark>, <mark>MVVM</mark>, <mark>Clean Architecture</mark>, <mark>CI/CD</mark>, <mark>GraphQL</mark> and mobile architecture. Successfully led cross-functional engineering teams, modernized legacy applications, delivered high-performance mobile platforms and managed complete App Store release lifecycles.
+
+  AI-Assisted Software Engineer experienced in leveraging <mark>ChatGPT</mark>, <mark>GitHub Copilot</mark>, <mark>Claude</mark>, <mark>Gemini</mark> and <mark>Cursor AI</mark> for code generation, debugging, architecture reviews, documentation, unit testing, refactoring and developer productivity while maintaining engineering best practices.
 
 content:
-  - title: Projects # Title for the section
-    layout: list # Type of content section (list/text)
-    content:
-      - layout: top-middle
-        title: Super awesome project
-        link: github.com/sproogen
-        # link_text: Project Website
-        additional_links:
-          - title:  sproogen/modern-resume-theme
-            icon: fab fa-github
-            url: github.com/sproogen/modern-resume-theme
-          # - title:  Github page for project (eg. sproogen/modern-resume-theme)
-          #   icon: fab fa-github
-          #   url: Link to project (eg. sproogen.github.io/modern-resume-theme)
-        quote: >
-          This is probably one of the greatest apps ever created, if you don't agree you're probably wrong.
-        description: | # this will include new lines to allow paragraphs
-          I started this project as a way if learning <mark>React</mark> and it has since grown into a fully fledged app. I have learned many skills through this and been I'm very proud of having this in my portfolio. If you don't have a project as awesome as this I would advise you make one.
-
-  - title: Experience # Title for the section
-    layout: list # Type of content section (list/text)
+  - title: Experience
+    layout: list
     content:
       - layout: left
-        title: The Boring Company
-        link: boringcompany.com
-        # link_text: boringcompany.com
-        sub_title: Senior Network System Administrator
-        caption: November 2017 - Present
-        quote: >
-          Solving 21st century problems by diging holes and making game changing products like the *not a flamethrower*
+        title: Systems Limited
+        link: systemsltd.com
+        sub_title: Managing Consultant – iOS Engineering (Lead iOS Engineer)
+        caption: November 2022 - Present
         description: | # this will include new lines to allow paragraphs
-            Every company needs its networks properly administered and The Boring Compay is no exception. Digging holes is hard and I play my part making sure the whole company stays connected. I lead a team of 5 people and enjoy driving the company to try new technologies.
+          - Lead architecture, design and development of enterprise native iOS applications.
+          - Manage iOS and Android engineering teams while mentoring senior engineers.
+          - Led migration from UIKit to SwiftUI and modern MVVM/Clean Architecture.
+          - Optimized APIs, application performance and reduced crash rates.
+          - Owned App Store releases, CI/CD pipelines and production deployments.
+          - Collaborated with Product Managers, QA, UX and Backend teams.
+          - Used ChatGPT, GitHub Copilot, Claude, Gemini and Cursor AI to accelerate development, debugging, code reviews, documentation and architecture decisions.
 
-  - title: Education # Title for the section
-    layout: list # Type of content section (list/text)
-    content:
       - layout: left
-        title: Harvard University
-        caption: 2010 - 2013
-        sub_title: BSc Computer Science
-        quote: >
-          Established in 1636, Harvard is the oldest higher education institution in the United States, and is widely regarded in terms of its influence, reputation, and academic pedigree as a leading university in not just the US but also the world.
+        title: Appiskey
+        link: appiskey.com
+        sub_title: Manager iOS
+        caption: December 2021 - November 2022
         description: | # this will include new lines to allow paragraphs
-          During my time at Harvard I learnt most of my key skills that have I have taken through my career such as teamwork and working to tight deadlines. I thouroughly enjoyed my time as university and learnt a lot about a healthy work life balance.
+          - Managed an 8-member iOS engineering team.
+          - Defined engineering standards and scalable architecture.
+          - Led sprint execution, technical planning and release management.
+          - Mentored developers through code reviews and technical coaching.
 
-          I spent a lot of my free time as a committee member of the *Harvard Mountaineering Club* taking on roles such as *Trip Secretary* and *Vice-President*.
+      - layout: left
+        title: Creative Chaos
+        link: creativechaos.co
+        sub_title: Principal Software Engineer
+        caption: July 2018 - November 2021
+        description: | # this will include new lines to allow paragraphs
+          - Technical Lead for enterprise mobile applications including Litterati and UNation.
+          - Led engineering teams of up to 13 developers.
+          - Designed scalable mobile architecture using Swift, MVVM and Clean Architecture.
+          - Collaborated with international clients and cross-functional teams.
 
-  - title: A Little More About Me
+      - layout: left
+        title: GranPlay
+        sub_title: iOS Consultant
+        caption: October 2017 - June 2018
+        description: | # this will include new lines to allow paragraphs
+          - Developed enterprise iOS applications using Objective-C.
+          - Implemented offline caching, Realm and App Store releases.
+
+      - layout: left
+        title: Sharjah eGovernment
+        sub_title: Lead Mobile Developer
+        caption: November 2014 - September 2017
+        description: | # this will include new lines to allow paragraphs
+          - Led iOS and Android engineering teams for government applications.
+          - Architected secure enterprise mobile applications.
+          - Implemented Face ID, Keychain and security best practices.
+          - Managed sprint planning, estimation and technical delivery.
+
+      - layout: left
+        title: iLabs Apps
+        sub_title: Senior iOS Developer
+        caption: March 2013 - October 2014
+        description: | # this will include new lines to allow paragraphs
+          - Developed native iOS applications using Objective-C and UIKit.
+          - Integrated REST APIs and third-party SDKs.
+          - Performed code reviews and mentored junior developers.
+
+      - layout: left
+        title: Axact
+        sub_title: Assistant Software Architect
+        caption: June 2012 - March 2013
+        description: | # this will include new lines to allow paragraphs
+          - Developed enterprise iOS applications and participated in architecture decisions.
+          - Optimized performance and managed App Store releases.
+
+      - layout: left
+        title: M3 Technologies
+        sub_title: Software Engineer (iOS)
+        caption: March 2010 - May 2012
+        description: | # this will include new lines to allow paragraphs
+          - Built native iPhone and iPad applications using Objective-C.
+          - Integrated REST/SOAP APIs and collaborated with Android and backend teams.
+
+  - title: Skills
     layout: text
     content: | # this will include new lines to allow paragraphs
-      Alongside my interests in networks and software engineering some of my other interests and hobbies are:
-      - Rock climbing
-      - Gaming
-      - Knitting
-      - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
+      - **Swift** — Expert
+      - **SwiftUI** — Expert
+      - **UIKit** — Expert
+      - **Objective-C** — Expert
+      - **MVVM** — Expert
+      - **Mobile Architecture** — Expert
+      - **REST APIs** — Expert
+      - **Git** — Expert
+      - **CI/CD** — Advanced
+      - **GraphQL** — Advanced
+      - **Technical Leadership** — Advanced
+      - **AI-Assisted Development** — Advanced
 
-      Look at this cool image  
-      ![Trees](/modern-resume-theme/images/landscape-trees.jpg "Trees")
+  - title: Education
+    layout: list
+    content:
+      - layout: left
+        title: University of Karachi
+        caption: January 2006 - December 2009
+        sub_title: Bachelor's Degree — Software Engineering
+        description: | # this will include new lines to allow paragraphs
+          Bachelor's Degree in Software Engineering from the University of Karachi.
+
+  - title: Languages
+    layout: text
+    content: | # this will include new lines to allow paragraphs
+      - **Urdu** — Native
+      - **English** — Fluent
 
 # Footer
 footer_show_references: true
