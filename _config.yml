@@ -23,7 +23,7 @@ darkmode: false
 # Social links
 # twitter_username:
 github_username: kurians2006
-# linkedin_username: # add your LinkedIn username (profile path) if you want the icon
+linkedin_username: naeemparacha
 # stackoverflow_username:
 # dribbble_username:
 # facebook_username:
@@ -43,10 +43,6 @@ additional_links:
 - title: Karachi, Pakistan
   icon: fas fa-map-marker-alt
   url: https://www.google.com/maps/place/Karachi
-# Replace the url below with your full LinkedIn profile URL
-- title: LinkedIn
-  icon: fab fa-linkedin
-  url: https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME
 
 # About Section
 # about_title: About Me
