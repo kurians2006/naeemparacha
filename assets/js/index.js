@@ -1,6 +1,8 @@
 (function () {
   var storageKey = "resume-theme";
   var body = document.body;
+  var pdfFallback = "files/Muhammad-Naeem-Paracha-Resume.pdf";
+  var isGeneratingPdf = false;
 
   function getPreferredTheme() {
     var saved = localStorage.getItem(storageKey);
@@ -67,6 +69,123 @@
     icons.insertBefore(li, icons.firstChild);
     updateToggle(currentTheme());
   }
+
+  function setDownloadBusy(isBusy) {
+    var buttons = document.querySelectorAll(".resume-download");
+    buttons.forEach(function (button) {
+      if (isBusy) {
+        button.classList.add("is-busy");
+        button.setAttribute("aria-busy", "true");
+        button.dataset.originalText = button.textContent;
+        button.textContent = "Preparing PDF...";
+      } else {
+        button.classList.remove("is-busy");
+        button.removeAttribute("aria-busy");
+        if (button.dataset.originalText) {
+          button.textContent = button.dataset.originalText;
+        }
+      }
+    });
+  }
+
+  function buildExportRoot() {
+    var root = document.createElement("div");
+    root.className = "pdf-export-root";
+
+    var header = document.querySelector(".header-container");
+    var content = document.querySelector(".page-content .wrapper");
+
+    if (header) {
+      root.appendChild(header.cloneNode(true));
+    }
+    if (content) {
+      root.appendChild(content.cloneNode(true));
+    }
+
+    root.querySelectorAll(".no-print, .theme-toggle, .resume-download, #theme-toggle").forEach(function (el) {
+      el.remove();
+    });
+
+    return root;
+  }
+
+  function downloadGeneratedPdf() {
+    if (isGeneratingPdf) {
+      return;
+    }
+
+    if (typeof html2pdf === "undefined") {
+      window.location.href = pdfFallback;
+      return;
+    }
+
+    isGeneratingPdf = true;
+    setDownloadBusy(true);
+
+    var wasDark = body.classList.contains("dark");
+    body.classList.remove("dark");
+    body.classList.add("exporting-pdf");
+
+    var exportRoot = buildExportRoot();
+    document.body.appendChild(exportRoot);
+
+    var options = {
+      margin: [10, 10, 10, 10],
+      filename: "Muhammad-Naeem-Paracha-Resume.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: "#ffffff"
+      },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ["css", "legacy"] }
+    };
+
+    html2pdf()
+      .set(options)
+      .from(exportRoot)
+      .save()
+      .catch(function () {
+        window.location.href = pdfFallback;
+      })
+      .finally(function () {
+        exportRoot.remove();
+        body.classList.remove("exporting-pdf");
+        if (wasDark) {
+          body.classList.add("dark");
+        }
+        setDownloadBusy(false);
+        isGeneratingPdf = false;
+      });
+  }
+
+  function isDownloadTrigger(target) {
+    if (!target) {
+      return false;
+    }
+
+    if (target.closest(".resume-download")) {
+      return true;
+    }
+
+    var iconLink = target.closest("a");
+    if (!iconLink) {
+      return false;
+    }
+
+    var icon = iconLink.querySelector("i");
+    return !!(icon && (icon.classList.contains("fa-download") || icon.getAttribute("title") === "Download Resume"));
+  }
+
+  document.addEventListener("click", function (event) {
+    if (!isDownloadTrigger(event.target)) {
+      return;
+    }
+    event.preventDefault();
+    downloadGeneratedPdf();
+  });
 
   applyTheme(getPreferredTheme());
   createToggle();

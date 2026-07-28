@@ -51,6 +51,29 @@
   transform: translateY(-1px);
 }
 
+.resume-download.is-busy {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.pdf-export-root {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  width: 900px;
+  padding: 24px;
+  background: #ffffff;
+  color: #222;
+  z-index: -1;
+}
+
+body.exporting-pdf .no-print,
+body.exporting-pdf .theme-toggle,
+body.exporting-pdf .resume-download,
+body.exporting-pdf .footer-container {
+  display: none !important;
+}
+
 .theme-toggle {
   border: 0;
   cursor: pointer;

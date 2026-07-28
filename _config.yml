@@ -58,7 +58,7 @@ about_content: | # this will include new lines to allow paragraphs
 
   AI-Assisted Software Engineer experienced in leveraging <mark>ChatGPT</mark>, <mark>GitHub Copilot</mark>, <mark>Claude</mark>, <mark>Gemini</mark> and <mark>Cursor AI</mark> for code generation, debugging, architecture reviews, documentation, unit testing, refactoring and developer productivity while maintaining engineering best practices.
 
-  <a class="resume-download" href="/naeemparacha/files/Muhammad-Naeem-Paracha-Resume.pdf" download="Muhammad-Naeem-Paracha-Resume.pdf">Download Resume</a>
+  <a class="resume-download" href="#download-resume" role="button">Download Resume</a>
 
 content:
   - title: Projects
