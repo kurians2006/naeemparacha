@@ -4,6 +4,34 @@
 
 @import 'modern-resume-theme';
 
+// Keep all header actions compact and on one line.
+.header-right .icons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+}
+
+.header-right .icons li {
+  padding-left: 0;
+}
+
+.header-right .icons .button.button--sacnite {
+  width: 42px;
+  height: 42px;
+}
+
+.header-right .icons i {
+  font-size: 19px;
+  line-height: 42px;
+}
+
+@media screen and (max-width: 767px) {
+  .header-right .icons {
+    justify-content: center;
+  }
+}
+
 .resume-download {
   display: inline-block;
   margin-top: 1rem;
