@@ -36,16 +36,18 @@
   display: inline-block;
   margin-top: 1rem;
   padding: 0.7rem 1.25rem;
-  border-radius: 6px;
-  background: #1f6feb;
+  border: 2px solid #333;
+  border-radius: 4px;
+  background: #333;
   color: #fff !important;
   font-weight: 600;
   text-decoration: none !important;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .resume-download:hover {
-  background: #1158c7;
+  background: transparent;
+  color: #333 !important;
   transform: translateY(-1px);
 }
 
@@ -68,9 +70,12 @@
 }
 
 .dark .resume-download {
-  background: #3b82f6;
+  border-color: #e6e6e6;
+  background: #e6e6e6;
+  color: #222 !important;
 }
 
 .dark .resume-download:hover {
-  background: #2563eb;
+  background: transparent;
+  color: #e6e6e6 !important;
 }
