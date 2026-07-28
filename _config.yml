@@ -37,6 +37,9 @@ linkedin_username: naeemparacha
 
 # Additional icon links
 additional_links:
+- title: Download Resume
+  icon: fas fa-download
+  url: /naeemparacha/files/Muhammad-Naeem-Paracha-Resume.pdf
 - title: Call
   icon: fas fa-phone
   url: tel:+923343485250
@@ -53,6 +56,8 @@ about_content: | # this will include new lines to allow paragraphs
   Expert in <mark>Swift</mark>, <mark>SwiftUI</mark>, <mark>UIKit</mark>, <mark>Objective-C</mark>, <mark>MVVM</mark>, <mark>Clean Architecture</mark>, <mark>CI/CD</mark>, <mark>GraphQL</mark> and mobile architecture. Successfully led cross-functional engineering teams, modernized legacy applications, delivered high-performance mobile platforms and managed complete App Store release lifecycles.
 
   AI-Assisted Software Engineer experienced in leveraging <mark>ChatGPT</mark>, <mark>GitHub Copilot</mark>, <mark>Claude</mark>, <mark>Gemini</mark> and <mark>Cursor AI</mark> for code generation, debugging, architecture reviews, documentation, unit testing, refactoring and developer productivity while maintaining engineering best practices.
+
+  <a class="resume-download" href="/naeemparacha/files/Muhammad-Naeem-Paracha-Resume.pdf" download="Muhammad-Naeem-Paracha-Resume.pdf">Download Resume</a>
 
 content:
   - title: Experience
