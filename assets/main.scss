@@ -57,20 +57,38 @@
 }
 
 .pdf-export-root {
-  position: fixed;
-  left: -10000px;
-  top: 0;
-  width: 900px;
+  width: 1000px;
+  max-width: 100%;
+  margin: 0 auto;
   padding: 24px;
   background: #ffffff;
   color: #222;
-  z-index: -1;
 }
 
-body.exporting-pdf .no-print,
-body.exporting-pdf .theme-toggle,
-body.exporting-pdf .resume-download,
-body.exporting-pdf .footer-container {
+.pdf-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  z-index: 9999;
+}
+
+.pdf-overlay__text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+body.exporting-pdf > .header-container,
+body.exporting-pdf > .page-content,
+body.exporting-pdf > .footer-container {
+  display: none !important;
+}
+
+body.exporting-pdf .pdf-export-root .no-print,
+body.exporting-pdf .pdf-export-root .footer-container {
   display: none !important;
 }
 

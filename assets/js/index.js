@@ -109,6 +109,13 @@
     return root;
   }
 
+  function buildOverlay() {
+    var overlay = document.createElement("div");
+    overlay.className = "pdf-overlay";
+    overlay.innerHTML = '<p class="pdf-overlay__text">Generating your PDF resume...</p>';
+    return overlay;
+  }
+
   function downloadGeneratedPdf() {
     if (isGeneratingPdf) {
       return;
@@ -123,11 +130,15 @@
     setDownloadBusy(true);
 
     var wasDark = body.classList.contains("dark");
+    var scrollY = window.pageYOffset;
     body.classList.remove("dark");
-    body.classList.add("exporting-pdf");
 
     var exportRoot = buildExportRoot();
+    var overlay = buildOverlay();
     document.body.appendChild(exportRoot);
+    document.body.appendChild(overlay);
+    body.classList.add("exporting-pdf");
+    window.scrollTo(0, 0);
 
     var options = {
       margin: [10, 10, 10, 10],
@@ -137,10 +148,13 @@
         scale: 2,
         useCORS: true,
         logging: false,
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
+        windowWidth: 1100,
+        scrollX: 0,
+        scrollY: 0
       },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      pagebreak: { mode: ["css", "legacy"] }
+      pagebreak: { mode: ["css", "legacy"], avoid: [".layout", ".profile-img"] }
     };
 
     html2pdf()
@@ -150,12 +164,14 @@
       .catch(function () {
         window.location.href = pdfFallback;
       })
-      .finally(function () {
+      .then(function () {
         exportRoot.remove();
+        overlay.remove();
         body.classList.remove("exporting-pdf");
         if (wasDark) {
           body.classList.add("dark");
         }
+        window.scrollTo(0, scrollY);
         setDownloadBusy(false);
         isGeneratingPdf = false;
       });
