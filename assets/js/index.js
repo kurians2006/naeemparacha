@@ -102,11 +102,54 @@
       root.appendChild(content.cloneNode(true));
     }
 
+    replaceProfileImage(root);
+
     root.querySelectorAll(".no-print, .theme-toggle, .resume-download, #theme-toggle").forEach(function (el) {
       el.remove();
     });
 
     return root;
+  }
+
+  // html2canvas does not reliably paint the theme's background-image avatar,
+  // so swap it for a real <img> and keep its column out of the no-print purge.
+  function replaceProfileImage(root) {
+    var span = root.querySelector(".profile-img");
+    if (!span) {
+      return;
+    }
+
+    var column = span.closest(".no-print");
+    if (column) {
+      column.classList.remove("no-print");
+    }
+
+    var match = /url\(["']?(.*?)["']?\)/.exec(span.getAttribute("style") || "");
+    if (!match) {
+      return;
+    }
+
+    var img = document.createElement("img");
+    img.src = new URL(match[1], window.location.href).href;
+    img.className = "pdf-profile-img";
+    img.alt = "";
+    span.replaceWith(img);
+  }
+
+  function waitForImages(root) {
+    var pending = Array.prototype.slice
+      .call(root.querySelectorAll("img"))
+      .filter(function (img) {
+        return !img.complete;
+      })
+      .map(function (img) {
+        return new Promise(function (resolve) {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      });
+
+    return Promise.all(pending);
   }
 
   function buildOverlay() {
@@ -148,19 +191,16 @@
         scale: 2,
         useCORS: true,
         logging: false,
-        backgroundColor: "#ffffff",
-        windowWidth: 1100,
-        scrollX: 0,
-        scrollY: 0
+        backgroundColor: "#ffffff"
       },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      pagebreak: { mode: ["css", "legacy"], avoid: [".layout", ".profile-img"] }
+      pagebreak: { mode: ["css", "legacy"], avoid: [".layout", ".text-container"] }
     };
 
-    html2pdf()
-      .set(options)
-      .from(exportRoot)
-      .save()
+    waitForImages(exportRoot)
+      .then(function () {
+        return html2pdf().set(options).from(exportRoot).save();
+      })
       .catch(function () {
         window.location.href = pdfFallback;
       })
