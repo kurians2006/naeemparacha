@@ -56,17 +56,23 @@
   pointer-events: none;
 }
 
-// The generated PDF is rasterised from this node, so it keeps a fixed desktop
-// width regardless of the visitor's screen size.
+// Render on-screen during capture. Off-screen / covered nodes often become blank PDFs.
 .pdf-export-root {
-  width: 1080px;
-  padding: 20px 32px;
-  background: #ffffff;
-  color: #222;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 900px;
+  max-width: 100vw;
+  padding: 24px 28px 40px;
+  background: #ffffff !important;
+  color: #222 !important;
+  z-index: 10000;
+  overflow: visible;
+  box-sizing: border-box;
 
-  // The theme pins .container to 1170px, which would overflow and clip here.
   .container {
     width: 100% !important;
+    max-width: 100% !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
@@ -89,7 +95,6 @@
     page-break-inside: avoid;
   }
 
-  // html2canvas paints a wrapped inline highlight as one full-width block.
   mark {
     display: inline-block;
   }
@@ -109,26 +114,14 @@
   }
 }
 
-.pdf-overlay {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  z-index: 9999;
-}
-
-.pdf-overlay__text {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
+body.exporting-pdf {
+  overflow: hidden;
 }
 
 body.exporting-pdf > .header-container,
 body.exporting-pdf > .page-content,
 body.exporting-pdf > .footer-container {
-  display: none !important;
+  visibility: hidden !important;
 }
 
 body.exporting-pdf .pdf-export-root .no-print,

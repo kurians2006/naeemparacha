@@ -1,7 +1,7 @@
 (function () {
   var storageKey = "resume-theme";
   var body = document.body;
-  var pdfFallback = "files/Muhammad-Naeem-Paracha-Resume.pdf";
+  var pdfFallback = new URL("files/Muhammad-Naeem-Paracha-Resume.pdf", window.location.href).href;
   var isGeneratingPdf = false;
 
   function getPreferredTheme() {
@@ -88,9 +88,58 @@
     });
   }
 
+  function downloadFallbackPdf() {
+    var link = document.createElement("a");
+    link.href = pdfFallback;
+    link.download = "Muhammad-Naeem-Paracha-Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+
+  function replaceProfileImage(root) {
+    var span = root.querySelector(".profile-img");
+    if (!span) {
+      return;
+    }
+
+    var column = span.closest(".no-print");
+    if (column) {
+      column.classList.remove("no-print");
+    }
+
+    var match = /url\(["']?(.*?)["']?\)/.exec(span.getAttribute("style") || "");
+    if (!match) {
+      return;
+    }
+
+    var img = document.createElement("img");
+    img.src = new URL(match[1], window.location.href).href;
+    img.className = "pdf-profile-img";
+    img.alt = "Profile photo";
+    img.crossOrigin = "anonymous";
+    span.replaceWith(img);
+  }
+
+  function waitForImages(root) {
+    var images = Array.prototype.slice.call(root.querySelectorAll("img"));
+    return Promise.all(
+      images.map(function (img) {
+        if (img.complete && img.naturalWidth > 0) {
+          return Promise.resolve();
+        }
+        return new Promise(function (resolve) {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      })
+    );
+  }
+
   function buildExportRoot() {
     var root = document.createElement("div");
     root.className = "pdf-export-root";
+    root.setAttribute("aria-hidden", "true");
 
     var header = document.querySelector(".header-container");
     var content = document.querySelector(".page-content .wrapper");
@@ -111,61 +160,13 @@
     return root;
   }
 
-  // html2canvas does not reliably paint the theme's background-image avatar,
-  // so swap it for a real <img> and keep its column out of the no-print purge.
-  function replaceProfileImage(root) {
-    var span = root.querySelector(".profile-img");
-    if (!span) {
-      return;
-    }
-
-    var column = span.closest(".no-print");
-    if (column) {
-      column.classList.remove("no-print");
-    }
-
-    var match = /url\(["']?(.*?)["']?\)/.exec(span.getAttribute("style") || "");
-    if (!match) {
-      return;
-    }
-
-    var img = document.createElement("img");
-    img.src = new URL(match[1], window.location.href).href;
-    img.className = "pdf-profile-img";
-    img.alt = "";
-    span.replaceWith(img);
-  }
-
-  function waitForImages(root) {
-    var pending = Array.prototype.slice
-      .call(root.querySelectorAll("img"))
-      .filter(function (img) {
-        return !img.complete;
-      })
-      .map(function (img) {
-        return new Promise(function (resolve) {
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      });
-
-    return Promise.all(pending);
-  }
-
-  function buildOverlay() {
-    var overlay = document.createElement("div");
-    overlay.className = "pdf-overlay";
-    overlay.innerHTML = '<p class="pdf-overlay__text">Generating your PDF resume...</p>';
-    return overlay;
-  }
-
   function downloadGeneratedPdf() {
     if (isGeneratingPdf) {
       return;
     }
 
     if (typeof html2pdf === "undefined") {
-      window.location.href = pdfFallback;
+      downloadFallbackPdf();
       return;
     }
 
@@ -173,40 +174,53 @@
     setDownloadBusy(true);
 
     var wasDark = body.classList.contains("dark");
-    var scrollY = window.pageYOffset;
+    var scrollY = window.pageYOffset || 0;
     body.classList.remove("dark");
+    body.classList.add("exporting-pdf");
 
     var exportRoot = buildExportRoot();
-    var overlay = buildOverlay();
     document.body.appendChild(exportRoot);
-    document.body.appendChild(overlay);
-    body.classList.add("exporting-pdf");
     window.scrollTo(0, 0);
 
     var options = {
-      margin: [10, 10, 10, 10],
+      margin: [8, 8, 8, 8],
       filename: "Muhammad-Naeem-Paracha-Resume.pdf",
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: {
         scale: 2,
         useCORS: true,
+        allowTaint: true,
         logging: false,
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: exportRoot.scrollWidth,
+        windowHeight: exportRoot.scrollHeight
       },
       jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      pagebreak: { mode: ["css", "legacy"], avoid: [".layout", ".text-container"] }
+      pagebreak: { mode: ["css", "legacy"] }
     };
 
     waitForImages(exportRoot)
       .then(function () {
+        // Give the browser a paint frame so layout/dimensions are ready.
+        return new Promise(function (resolve) {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(resolve);
+          });
+        });
+      })
+      .then(function () {
+        if (!exportRoot.scrollHeight || !exportRoot.scrollWidth) {
+          throw new Error("Empty export root");
+        }
         return html2pdf().set(options).from(exportRoot).save();
       })
       .catch(function () {
-        window.location.href = pdfFallback;
+        downloadFallbackPdf();
       })
-      .then(function () {
+      .finally(function () {
         exportRoot.remove();
-        overlay.remove();
         body.classList.remove("exporting-pdf");
         if (wasDark) {
           body.classList.add("dark");
