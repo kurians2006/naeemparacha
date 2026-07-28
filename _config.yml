@@ -1,12 +1,12 @@
 # Site
 title: Muhammad Naeem Paracha
 description: Lead iOS Engineer | Mobile Engineering Leader | Swift · SwiftUI · Mobile Architecture
-repository: kurians2006/naeemparacha.github.io
+repository: kurians2006/naeemparacha
 favicon: images/favicon.ico
 
 # GitHub Pages (project site under kurians2006)
 url: https://kurians2006.github.io
-baseurl: /naeemparacha.github.io
+baseurl: /naeemparacha
 
 # Content configuration version
 version: 2
@@ -15,7 +15,7 @@ version: 2
 name: Muhammad Naeem Paracha
 title: Lead iOS Engineer | Mobile Engineering Leader
 email: naeem.paracha@yahoo.com
-website: kurians2006.github.io/naeemparacha.github.io
+website: kurians2006.github.io/naeemparacha
 
 # Dark Mode (true/false/never)
 darkmode: false
